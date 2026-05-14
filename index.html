@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quím Express ⚗️ — Revisão para a Prova</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --card: #1c2230;
+    --border: #2a3347;
+    --accent: #00cfff;
+    --accent2: #a78bfa;
+    --accent3: #fb923c;
+    --accent4: #facc15;
+    --text: #e8eaf0;
+    --muted: #7a8499;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  .hero { padding: 60px 24px 50px; text-align: center; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,207,255,0.1), transparent), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(167,139,250,0.07), transparent); border-bottom: 1px solid var(--border); }
+  .hero-badge { display: inline-block; background: rgba(0,207,255,0.1); border: 1px solid rgba(0,207,255,0.3); color: var(--accent); font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0 auto 28px; }
+  .pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .pill { display: flex; align-items: center; gap: 7px; background: var(--surface); border: 1px solid var(--border); border-radius: 30px; padding: 7px 16px; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; text-decoration: none; color: var(--text); }
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .da { background: var(--accent); } .db { background: var(--accent2); } .dc { background: var(--accent3); }
+
+  .progress-bar-wrap { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 24px; position: sticky; top: 0; z-index: 99; display: flex; align-items: center; gap: 12px; }
+  .progress-label { font-size: 0.75rem; color: var(--muted); white-space: nowrap; font-family: 'Syne', sans-serif; }
+  .progress-track { flex: 1; height: 4px; background: var(--border); border-radius: 10px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 10px; width: 0%; transition: width 0.4s; }
+  .progress-pct { font-size: 0.75rem; color: var(--accent); font-weight: 600; min-width: 28px; }
+
+  .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+
+  .sec-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 32px; }
+  .sec-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .ia { background: rgba(0,207,255,0.1); border: 1px solid rgba(0,207,255,0.2); }
+  .ib { background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.2); }
+  .ic { background: rgba(251,146,60,0.1); border: 1px solid rgba(251,146,60,0.2); }
+  .sec-head h2 { font-family: 'Syne', sans-serif; font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 3px; }
+  .sec-head p { color: var(--muted); font-size: 0.88rem; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; margin-bottom: 14px; }
+  .card-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; }
+  .ta { background: rgba(0,207,255,0.13); color: var(--accent); }
+  .tb { background: rgba(167,139,250,0.13); color: var(--accent2); }
+  .tc { background: rgba(251,146,60,0.13); color: var(--accent3); }
+  .td { background: rgba(250,204,21,0.13); color: var(--accent4); }
+
+  .hl { border-left: 3px solid var(--accent); background: rgba(0,207,255,0.05); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 0.9rem; }
+  .hl.b { border-color: var(--accent2); background: rgba(167,139,250,0.05); }
+  .hl.c { border-color: var(--accent3); background: rgba(251,146,60,0.05); }
+  .hl.y { border-color: var(--accent4); background: rgba(250,204,21,0.05); }
+  .hl strong { color: var(--accent); }
+  .hl.b strong { color: var(--accent2); }
+  .hl.c strong { color: var(--accent3); }
+  .hl.y strong { color: var(--accent4); }
+
+  .formula { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 1.05rem; text-align: center; color: var(--accent4); margin: 10px 0; font-family: 'Syne', sans-serif; font-weight: 700; }
+  .formula.big { font-size: 1.3rem; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.87rem; margin: 12px 0; }
+  th { background: rgba(255,255,255,0.03); font-family: 'Syne', sans-serif; font-size: 0.73rem; text-transform: uppercase; letter-spacing: 0.07em; padding: 9px 13px; text-align: left; border-bottom: 1px solid var(--border); color: var(--muted); }
+  td { padding: 9px 13px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  tr:last-child td { border-bottom: none; }
+
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:580px){ .g2 { grid-template-columns: 1fr; } }
+
+  ul.nl { list-style: none; padding: 0; }
+  ul.nl li { padding: 6px 0 6px 20px; position: relative; font-size: 0.9rem; color: #bcc5d6; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  ul.nl li:last-child { border-bottom: none; }
+  ul.nl li::before { content: '◆'; position: absolute; left: 0; font-size: 0.4rem; top: 12px; color: var(--accent); }
+  ul.nl.b li::before { color: var(--accent2); }
+  ul.nl.c li::before { color: var(--accent3); }
+
+  .acc-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  .acc-btn { width: 100%; background: none; border: none; color: var(--text); padding: 15px 18px; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 700; transition: color 0.2s; }
+  .acc-btn:hover { color: var(--accent); }
+  .chevron { transition: transform 0.3s; color: var(--muted); font-size: 0.75rem; }
+  .acc-item.open .chevron { transform: rotate(180deg); }
+  .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .acc-item.open .acc-body { max-height: 1000px; }
+  .acc-content { padding: 0 18px 18px; font-size: 0.89rem; line-height: 1.75; color: #bcc5d6; }
+
+  .quiz-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 28px; margin-top: 48px; }
+  .quiz-head { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--accent4); margin-bottom: 4px; }
+  .quiz-sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; }
+  .qblock { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: none; }
+  .qblock.active { display: block; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+  .qnum { font-size: 0.72rem; color: var(--muted); font-family: 'Syne', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 7px; }
+  .qtext { font-weight: 500; margin-bottom: 14px; font-size: 0.93rem; }
+  .opts { display: flex; flex-direction: column; gap: 7px; }
+  .opt { background: var(--card); border: 1.5px solid var(--border); border-radius: 9px; padding: 10px 14px; cursor: pointer; font-size: 0.86rem; transition: all 0.15s; text-align: left; color: var(--text); }
+  .opt:hover:not(:disabled) { border-color: var(--accent2); color: var(--accent2); }
+  .opt.correct { border-color: var(--accent); background: rgba(0,207,255,0.09); color: var(--accent); }
+  .opt.wrong { border-color: var(--accent3); background: rgba(251,146,60,0.07); color: var(--accent3); }
+  .qfeedback { font-size: 0.83rem; margin-top: 10px; padding: 9px 13px; border-radius: 7px; display: none; }
+  .qfeedback.show { display: block; }
+  .qfeedback.ok { background: rgba(0,207,255,0.07); color: var(--accent); }
+  .qfeedback.nok { background: rgba(251,146,60,0.07); color: #fca36e; }
+  .quiz-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; }
+  .btn { background: var(--accent); color: #000; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; border: none; border-radius: 9px; padding: 9px 20px; cursor: pointer; transition: all 0.18s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,207,255,0.25); }
+  .btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn.sec { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+  .btn.sec:hover { border-color: var(--muted); color: var(--text); box-shadow: none; }
+  .score-n { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--accent4); }
+
+  .cli { display: flex; align-items: flex-start; gap: 11px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.04); cursor: pointer; user-select: none; }
+  .cli:last-child { border-bottom: none; }
+  .cb { width: 19px; height: 19px; border: 2px solid var(--border); border-radius: 5px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; margin-top: 3px; font-size: 0.65rem; }
+  .cli.chk .cb { background: var(--accent); border-color: var(--accent); color: #000; }
+  .cli.chk .cl { text-decoration: line-through; color: var(--muted); }
+  .cl { font-size: 0.88rem; }
+
+  strong { color: var(--text); }
+  em { color: var(--accent4); font-style: normal; font-weight: 500; }
+  .divider { height: 1px; background: var(--border); margin: 18px 0; }
+  .sub-head { font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin: 24px 0 12px; }
+
+  .footer { text-align: center; padding: 36px 24px; color: var(--muted); font-size: 0.82rem; }
+  .footer span { color: var(--accent3); }
+
+  #scrollTop { position: fixed; bottom: 22px; right: 22px; width: 40px; height: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 200; opacity: 0; font-size: 1rem; }
+  #scrollTop.show { opacity: 1; }
+  #scrollTop:hover { color: var(--text); transform: translateY(-2px); }
+
+  .beaker-visual { display: flex; gap: 8px; align-items: flex-end; margin: 14px 0; flex-wrap: wrap; }
+  .beaker { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .beaker-body { width: 50px; height: 60px; border: 2px solid var(--border); border-radius: 0 0 8px 8px; position: relative; overflow: hidden; background: var(--bg); }
+  .beaker-fill { position: absolute; bottom: 0; left: 0; right: 0; border-radius: 0 0 6px 6px; }
+  .beaker-label { font-size: 0.65rem; color: var(--muted); font-family: 'Syne', sans-serif; text-align: center; }
+  .beaker-cap { font-size: 0.7rem; color: var(--accent); text-align: center; font-weight: 700; }
+
+  .step-flow { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+  .step { display: flex; align-items: flex-start; gap: 12px; }
+  .step-num { width: 26px; height: 26px; border-radius: 50%; background: rgba(0,207,255,0.15); border: 1px solid rgba(0,207,255,0.3); color: var(--accent); font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-text { font-size: 0.88rem; color: #bcc5d6; padding-top: 3px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">⚗️ Revisão · 3º Ano EM · Química</div>
+  <h1>Quím <span>Express</span></h1>
+  <p>Só o que cai na prova — sem enrolação. Misturas e Titulação.</p>
+  <div class="pills">
+    <a href="#solutos-iguais" class="pill"><span class="dot da"></span>Misturas — Solutos Iguais</a>
+    <a href="#solutos-diferentes" class="pill"><span class="dot db"></span>Misturas — Solutos Diferentes</a>
+    <a href="#titulacao" class="pill"><span class="dot dc"></span>Titulação</a>
+    <a href="#quiz" class="pill">⚡ Quiz</a>
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <span class="progress-label">Progresso</span>
+  <div class="progress-track"><div class="progress-fill" id="pf"></div></div>
+  <span class="progress-pct" id="pp">0%</span>
+</div>
+
+<!-- ======================================================= -->
+<!-- SEÇÃO 1: MISTURAS COM SOLUTOS IGUAIS                    -->
+<!-- ======================================================= -->
+<div id="solutos-iguais">
+<div class="container"><div class="section">
+  <div class="sec-head">
+    <div class="sec-icon ia">🧪</div>
+    <div>
+      <h2>Misturas com Solutos Iguais</h2>
+      <p>Mesma substância dissolvida — como calcular a concentração resultante</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que é? <span class="tag ta">Conceito</span></div>
+    <p style="font-size:0.91rem;color:#bcc5d6;">Quando você mistura duas ou mais soluções que têm <strong>o mesmo soluto</strong> (ex: duas soluções de NaCl), basta somar a quantidade de soluto e somar o volume total. Simples assim.</p>
+    <div class="hl">
+      <strong>Princípio:</strong> O soluto se conserva. Toda a massa (ou mol) de soluto presente antes da mistura continua presente depois.
+    </div>
+  </div>
+
+  <p class="sub-head">As fórmulas que caem</p>
+
+  <div class="card">
+    <div class="card-title">📐 Concentração Comum (g/L) <span class="tag ta">Fórmula-chave</span></div>
+    <div class="formula big">C<sub>mix</sub> = (m₁ + m₂) / (V₁ + V₂)</div>
+    <p style="font-size:0.88rem;color:#bcc5d6;margin-top:8px;">Onde m é a massa do soluto (em gramas) e V é o volume da solução (em litros). Se o volume vier em mL, converta antes ou use mL dos dois lados — o que importa é ser consistente.</p>
+    <div class="hl y">
+      <strong>Atenção à armadilha:</strong> A prova pode dar m₁ em gramas e V₂ em mL. Sempre padronize as unidades antes de substituir.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📐 Concentração Molar (mol/L) <span class="tag ta">Fórmula-chave</span></div>
+    <div class="formula big">M<sub>mix</sub> = (n₁ + n₂) / (V₁ + V₂)</div>
+    <p style="font-size:0.88rem;color:#bcc5d6;margin-top:8px;">Mesma lógica: some os mols de soluto, divida pelo volume total. Se a questão der concentração molar e volume, lembre que <em>n = M × V</em>.</p>
+  </div>
+
+  <p class="sub-head">Casos especiais que caem muito</p>
+
+  <div class="acc-item open" id="b1">
+    <button class="acc-btn" onclick="tog('b1')">
+      <span>💧 Adição de solvente puro (diluição)</span><span class="chevron">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-content">
+      <p>Quando se adiciona <strong>água pura</strong> à solução, é um caso especial de mistura com soluto igual — a segunda solução tem concentração <em>zero</em>.</p>
+      <div class="formula">C<sub>final</sub> = (m<sub>soluto</sub>) / (V<sub>inicial</sub> + V<sub>água adicionada</sub>)</div>
+      <div class="hl"><strong>Outra forma equivalente:</strong> C₁V₁ = C₂V₂ (lei da diluição). A quantidade de soluto não muda, só o volume aumenta.</div>
+      <div class="hl y"><strong>Exemplo:</strong> 200 mL de NaCl 3 g/L recebe 300 mL de água pura. Massa de soluto = 3 × 0,2 = 0,6 g. Volume final = 0,5 L. C = 0,6/0,5 = <em>1,2 g/L</em>.</div>
+    </div></div>
+  </div>
+
+  <div class="acc-item" id="b2">
+    <button class="acc-btn" onclick="tog('b2')">
+      <span>🧂 Adição de soluto puro (sem solvente extra)</span><span class="chevron">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-content">
+      <p>Quando se <strong>dissolve mais sólido</strong> na solução, o volume muda muito pouco (geralmente a questão pede para desprezar). Some apenas a massa de soluto.</p>
+      <div class="formula">C<sub>final</sub> = (m<sub>inicial</sub> + m<sub>adicionada</sub>) / V<sub>inicial</sub></div>
+      <div class="hl c"><strong>Atenção:</strong> Se a questão disser "o volume permanece o mesmo", use diretamente esta fórmula. Se disser que o volume muda, considere o novo volume dado.</div>
+    </div></div>
+  </div>
+
+  <div class="acc-item" id="b3">
+    <button class="acc-btn" onclick="tog('b3')">
+      <span>🔄 Mistura de duas soluções com mesmo soluto</span><span class="chevron">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-content">
+      <p>O caso "puro": duas soluções com o mesmo soluto, concentrações diferentes. Aplique diretamente a fórmula principal.</p>
+      <div class="formula">C<sub>mix</sub> = (C₁·V₁ + C₂·V₂) / (V₁ + V₂)</div>
+      <div class="hl"><strong>Interpretação:</strong> C₁·V₁ = m₁ (massa do soluto da solução 1), C₂·V₂ = m₂. Você está somando as massas de soluto e dividindo pelo volume total. A fórmula é a mesma, só escrita diferente.</div>
+      <div class="hl y"><strong>Exemplo:</strong> 1 L de HCl 4 g/L + 3 L de HCl 2 g/L → C = (4 + 6) / 4 = <em>2,5 g/L</em>.</div>
+    </div></div>
+  </div>
+
+  <div class="card" style="margin-top:18px;">
+    <div class="card-title">📊 Resumão <span class="tag td">Cola mental</span></div>
+    <table>
+      <tr><th>Situação</th><th>O que some</th><th>O que some no denominador</th></tr>
+      <tr><td>2 soluções mesmo soluto</td><td>m₁ + m₂ (ou n₁ + n₂)</td><td>V₁ + V₂</td></tr>
+      <tr><td>Diluição (+ água pura)</td><td>m do soluto inalterado</td><td>V₁ + V<sub>água</sub></td></tr>
+      <tr><td>+ soluto sólido</td><td>m₁ + m<sub>sólido</sub></td><td>V₁ (geralmente mantido)</td></tr>
+    </table>
+  </div>
+
+</div></div></div>
+
+<!-- ======================================================= -->
+<!-- SEÇÃO 2: MISTURAS COM SOLUTOS DIFERENTES                -->
+<!-- ======================================================= -->
+<div id="solutos-diferentes">
+<div class="container"><div class="section">
+  <div class="sec-head">
+    <div class="sec-icon ib">🔬</div>
+    <div>
+      <h2>Misturas com Solutos Diferentes</h2>
+      <p>Cada soluto tem sua própria concentração na mistura final</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">A ideia central <span class="tag tb">Conceito</span></div>
+    <p style="font-size:0.91rem;color:#bcc5d6;">Quando os solutos são diferentes (ex: NaCl + KCl), eles não se misturam entre si — cada um conserva sua própria quantidade. O volume total aumenta, então a concentração de <strong>cada um</strong> cai. Você calcula a concentração de cada soluto <em>separadamente</em>.</p>
+    <div class="hl b">
+      <strong>Regra de ouro:</strong> Para cada soluto, C<sub>novo</sub> = m<sub>desse soluto</sub> / V<sub>total</sub>. O volume total é o mesmo para todos, mas a massa de cada soluto é a sua própria.
+    </div>
+  </div>
+
+  <p class="sub-head">Passo a passo para resolver</p>
+
+  <div class="card">
+    <div class="step-flow">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Identifique o volume total da mistura: <strong>V<sub>total</sub> = V₁ + V₂</strong>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Para cada soluto, calcule a massa (ou mols) que ele contribui: <strong>m<sub>A</sub> = C<sub>A</sub> × V<sub>A</sub></strong>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Divida a massa de cada soluto pelo volume total: <strong>C<sub>A,final</sub> = m<sub>A</sub> / V<sub>total</sub></strong>.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Repita o passo 3 para o soluto B (e C, D… se houver). Cada um tem seu próprio resultado.</div></div>
+    </div>
+    <div class="hl y">
+      <strong>Exemplo resolvido:</strong><br>
+      Mistura: 200 mL de NaCl 10 g/L + 300 mL de KCl 5 g/L.<br>
+      V<sub>total</sub> = 0,5 L.<br>
+      m<sub>NaCl</sub> = 10 × 0,2 = 2 g → C<sub>NaCl</sub> = 2/0,5 = <em>4 g/L</em>.<br>
+      m<sub>KCl</sub> = 5 × 0,3 = 1,5 g → C<sub>KCl</sub> = 1,5/0,5 = <em>3 g/L</em>.
+    </div>
+  </div>
+
+  <p class="sub-head">Comparação: solutos iguais × solutos diferentes</p>
+
+  <div class="card">
+    <table>
+      <tr><th>Aspecto</th><th>Solutos Iguais</th><th>Solutos Diferentes</th></tr>
+      <tr><td>Quantidade de resultados</td><td>1 concentração final</td><td>1 concentração por soluto</td></tr>
+      <tr><td>Massas de soluto</td><td>Some tudo junto</td><td>Cada soluto separado</td></tr>
+      <tr><td>Volume total</td><td>V₁ + V₂</td><td>V₁ + V₂ (igual para todos)</td></tr>
+      <tr><td>Fórmula base</td><td>C = (m₁+m₂)/(V₁+V₂)</td><td>C<sub>A</sub> = m<sub>A</sub>/(V₁+V₂)</td></tr>
+    </table>
+    <div class="hl b" style="margin-top:12px;"><strong>Ponto de confusão:</strong> Não some as massas de solutos diferentes — NaCl e KCl NÃO se somam. Calcule cada um independentemente.</div>
+  </div>
+
+  <div class="acc-item" id="c1">
+    <button class="acc-btn" onclick="tog('c1')">
+      <span>⚠️ Caso especial: reação entre os solutos</span><span class="chevron">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-content">
+      <p>Se os dois solutos <strong>reagem entre si</strong> quando misturados (ex: HCl + NaOH), o problema vira uma <em>titulação</em>. Você precisa determinar qual está em excesso e calcular a concentração do excesso no volume final.</p>
+      <div class="hl c"><strong>Este é exatamente o conteúdo de titulação (próxima seção).</strong> Se na mistura a questão indicar reação, vá pela estequiometria, não pela mistura simples.</div>
+    </div></div>
+  </div>
+
+</div></div></div>
+
+<!-- ======================================================= -->
+<!-- SEÇÃO 3: TITULAÇÃO                                       -->
+<!-- ======================================================= -->
+<div id="titulacao">
+<div class="container"><div class="section">
+  <div class="sec-head">
+    <div class="sec-icon ic">⚗️</div>
+    <div>
+      <h2>Titulação Ácido-Base</h2>
+      <p>Determinação de concentração por reação controlada — o clássico que sempre cai</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que é titulação? <span class="tag tc">Conceito</span></div>
+    <p style="font-size:0.91rem;color:#bcc5d6;">É uma técnica para determinar a <strong>concentração desconhecida</strong> de uma solução (o analito), usando uma solução de concentração conhecida (o titulante). Ácido reage com base até o ponto de equivalência, indicado por uma mudança de cor do indicador.</p>
+    <div class="hl c">
+      <strong>Ponto de equivalência:</strong> o momento exato em que os mols de H⁺ fornecidos pelo ácido igualam os mols de OH⁻ fornecidos pela base (ou vice-versa). É aqui que os cálculos se baseiam.
+    </div>
+  </div>
+
+  <p class="sub-head">A equação fundamental</p>
+
+  <div class="card">
+    <div class="card-title">📐 Fórmula da Titulação <span class="tag tc">Principal</span></div>
+    <div class="formula big">Mₐ · Vₐ · nₐ = M_b · V_b · n_b</div>
+    <p style="font-size:0.88rem;color:#bcc5d6;margin-top:10px;">Onde:</p>
+    <ul class="nl c" style="margin-top:8px;">
+      <li><strong>M</strong> = molaridade (mol/L)</li>
+      <li><strong>V</strong> = volume usado na titulação (mantenha em L, ou use mL dos dois lados)</li>
+      <li><strong>n</strong> = número de H⁺ ou OH⁻ fornecidos por molécula (basicidade/acidez)</li>
+    </ul>
+    <div class="hl y" style="margin-top:12px;">
+      <strong>Lembre dos valores de n:</strong> HCl → n=1 | H₂SO₄ → n=2 | H₃PO₄ → n=3 | NaOH → n=1 | Ca(OH)₂ → n=2 | Al(OH)₃ → n=3
+    </div>
+  </div>
+
+  <p class="sub-head">Passo a passo para resolver qualquer titulação</p>
+
+  <div class="card">
+    <div class="step-flow">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Identifique ácido e base, e seus valores de <strong>n</strong> (quantos H⁺ ou OH⁻ cada um libera).</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Monte a equação: <strong>Mₐ · Vₐ · nₐ = M_b · V_b · n_b</strong>.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Substitua os valores conhecidos. A incógnita é o que a questão pede (M desconhecido ou V gasto).</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Isole e calcule. Não precisa de nenhum outro passo!</div></div>
+    </div>
+  </div>
+
+  <p class="sub-head">Exemplos resolvidos</p>
+
+  <div class="acc-item open" id="d1">
+    <button class="acc-btn" onclick="tog('d1')">
+      <span>🔢 Exemplo 1 — Encontrar a concentração desconhecida</span><span class="chevron">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-content">
+      <p><strong>Enunciado:</strong> 25 mL de H₂SO₄ de concentração desconhecida foram titulados com 40 mL de NaOH 0,1 mol/L. Qual a molaridade do ácido?</p>
+      <div class="divider"></div>
+      <p><strong>Passo 1:</strong> n(H₂SO₄) = 2 | n(NaOH) = 1</p>
+      <p style="margin-top:6px;"><strong>Passo 2:</strong> Mₐ × 25 × 2 = 0,1 × 40 × 1</p>
+      <p style="margin-top:6px;"><strong>Passo 3:</strong> Mₐ × 50 = 4</p>
+      <div class="formula">Mₐ = 4 / 50 = <em style="color:var(--accent4)">0,08 mol/L</em></div>
+    </div></div>
+  </div>
+
+  <div class="acc-item" id="d2">
+    <button class="acc-btn" onclick="tog('d2')">
+      <span>🔢 Exemplo 2 — Encontrar o volume gasto</span><span class="chevron">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-content">
+      <p><strong>Enunciado:</strong> Quantos mL de NaOH 0,2 mol/L são necessários para titular 30 mL de HCl 0,3 mol/L?</p>
+      <div class="divider"></div>
+      <p><strong>Passo 1:</strong> n(HCl) = 1 | n(NaOH) = 1</p>
+      <p style="margin-top:6px;"><strong>Passo 2:</strong> 0,3 × 30 × 1 = 0,2 × V_b × 1</p>
+      <p style="margin-top:6px;"><strong>Passo 3:</strong> 9 = 0,2 × V_b</p>
+      <div class="formula">V_b = 9 / 0,2 = <em style="color:var(--accent4)">45 mL</em></div>
+    </div></div>
+  </div>
+
+  <div class="acc-item" id="d3">
+    <button class="acc-btn" onclick="tog('d3')">
+      <span>⚠️ Titulação com Ca(OH)₂ — cuidado com o n=2</span><span class="chevron">▼</span>
+    </button>
+    <div class="acc-body"><div class="acc-content">
+      <p><strong>Enunciado:</strong> 20 mL de HCl 0,5 mol/L titulam completamente certa quantidade de Ca(OH)₂ 0,1 mol/L. Qual o volume de Ca(OH)₂ usado?</p>
+      <div class="divider"></div>
+      <p><strong>Passo 1:</strong> n(HCl) = 1 | n(Ca(OH)₂) = 2</p>
+      <p style="margin-top:6px;"><strong>Passo 2:</strong> 0,5 × 20 × 1 = 0,1 × V_b × 2</p>
+      <p style="margin-top:6px;"><strong>Passo 3:</strong> 10 = 0,2 × V_b</p>
+      <div class="formula">V_b = 10 / 0,2 = <em style="color:var(--accent4)">50 mL</em></div>
+      <div class="hl c" style="margin-top:8px;"><strong>Erro clássico:</strong> esquecer de colocar n=2 para Ca(OH)₂. Sempre verifique a fórmula da base.</div>
+    </div></div>
+  </div>
+
+  <p class="sub-head">Conceitos extras que caem junto</p>
+
+  <div class="card">
+    <div class="card-title">🧫 Indicadores <span class="tag tc">Cobrado</span></div>
+    <table>
+      <tr><th>Indicador</th><th>Cor ácido</th><th>Cor base</th><th>Faixa de mudança</th></tr>
+      <tr><td>Fenolftaleína</td><td>Incolor</td><td>Rosa/magenta</td><td>pH 8,2 – 10</td></tr>
+      <tr><td>Azul de bromotimol</td><td>Amarelo</td><td>Azul</td><td>pH 6 – 7,6</td></tr>
+      <tr><td>Tornassol</td><td>Vermelho</td><td>Azul</td><td>pH 5 – 8</td></tr>
+    </table>
+    <div class="hl" style="margin-top:8px;"><strong>Mais cobrado:</strong> Fenolftaleína — incolor em meio ácido, rosa em meio básico. A mudança de cor sinaliza o ponto de equivalência.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 Termos do enunciado — não confunda <span class="tag td">Dica</span></div>
+    <table>
+      <tr><th>Termo na questão</th><th>O que significa</th></tr>
+      <tr><td>Titulante / padrão</td><td>Solução de concentração <strong>conhecida</strong> (a que você adiciona)</td></tr>
+      <tr><td>Analito / titulado</td><td>Solução de concentração <strong>desconhecida</strong> (a que você quer descobrir)</td></tr>
+      <tr><td>Ponto de equivalência</td><td>Mols de H⁺ = mols de OH⁻. Cálculo feito aqui.</td></tr>
+      <tr><td>Ponto final</td><td>Momento em que o indicador muda de cor. Próximo ao ponto de equivalência.</td></tr>
+      <tr><td>Alíquota</td><td>Volume retirado da amostra para a titulação</td></tr>
+    </table>
+  </div>
+
+</div></div></div>
+
+<!-- CHECKLIST -->
+<div class="container"><div class="section">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:rgba(250,204,21,0.1);border:1px solid rgba(250,204,21,0.2);">✅</div>
+    <div><h2 style="color:var(--accent4);">Checklist</h2><p>Marque o que você já domina</p></div>
+  </div>
+  <div class="card">
+    <p class="sub-head" style="margin-top:0;">Misturas — Solutos Iguais</p>
+    <div class="cli" onclick="chk(this)"><span class="cb"></span><span class="cl">Sei aplicar C = (m₁+m₂)/(V₁+V₂) para misturas com mesmo soluto</span></div>
+    <div class="cli" onclick="chk(this)"><span class="cb"></span><span class="cl">Sei resolver diluição com a fórmula C₁V₁ = C₂V₂</span></div>
+    <div class="cli" onclick="chk(this)"><span class="cb"></span><span class="cl">Sei lidar com adição de soluto sólido (sem aumentar volume)</span></div>
+    <p class="sub-head">Misturas — Solutos Diferentes</p>
+    <div class="cli" onclick="chk(this)"><span class="cb"></span><span class="cl">Entendo que cada soluto tem sua própria concentração final</span></div>
+    <div class="cli" onclick="chk(this)"><span class="cb"></span><span class="cl">Sei calcular C de cada soluto usando o volume total da mistura</span></div>
+    <div class="cli" onclick="chk(this)"><span class="cb"></span><span class="cl">Sei diferenciar mistura simples de reação entre os solutos</span></div>
+    <p class="sub-head">Titulação</p>
+    <div class="cli" onclick="chk(this)"><span class="cb"></span><span class="cl">Sei aplicar Mₐ·Vₐ·nₐ = M_b·V_b·n_b</span></div>
+    <div class="cli" onclick="chk(this)"><span class="cb"></span><span class="cl">Sei o valor de n para HCl, H₂SO₄, NaOH e Ca(OH)₂</span></div>
+    <div class="cli" onclick="chk(this)"><span class="cb"></span><span class="cl">Sei a cor da fenolftaleína em meio ácido e em meio básico</span></div>
+    <div class="cli" onclick="chk(this)"><span class="cb"></span><span class="cl">Sei o que é ponto de equivalência e como usar na equação</span></div>
+  </div>
+</div></div>
+
+<!-- QUIZ -->
+<div id="quiz">
+<div class="container"><div class="section" style="padding-bottom:80px;">
+  <div class="quiz-wrap">
+    <div class="quiz-head">⚡ Quiz Rápido</div>
+    <div class="quiz-sub" id="qs">8 questões direto ao ponto — bora testar?</div>
+
+    <!-- Q1 -->
+    <div class="qblock active" data-q="1">
+      <div class="qnum">Questão 1 de 8</div>
+      <div class="qtext">200 mL de NaCl 6 g/L são misturados a 300 mL de NaCl 4 g/L. Qual a concentração da mistura?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(this,false)">A) 5,0 g/L</button>
+        <button class="opt" onclick="ans(this,true)">B) 4,8 g/L</button>
+        <button class="opt" onclick="ans(this,false)">C) 10,0 g/L</button>
+        <button class="opt" onclick="ans(this,false)">D) 3,0 g/L</button>
+      </div>
+      <div class="qfeedback">m₁ = 6×0,2 = 1,2 g | m₂ = 4×0,3 = 1,2 g | V total = 0,5 L → C = 2,4/0,5 = 4,8 g/L. Não some as concentrações direto — some as massas!</div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="qblock" data-q="2">
+      <div class="qnum">Questão 2 de 8</div>
+      <div class="qtext">100 mL de solução de glicose 10 g/L recebem 400 mL de água pura. Qual a nova concentração?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(this,false)">A) 8 g/L</button>
+        <button class="opt" onclick="ans(this,false)">B) 4 g/L</button>
+        <button class="opt" onclick="ans(this,true)">C) 2 g/L</button>
+        <button class="opt" onclick="ans(this,false)">D) 10 g/L</button>
+      </div>
+      <div class="qfeedback">Massa de glicose = 10×0,1 = 1 g. Volume final = 100+400 = 500 mL = 0,5 L. C = 1/0,5 = 2 g/L. Diluição: massa de soluto não muda, só o volume aumenta.</div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="qblock" data-q="3">
+      <div class="qnum">Questão 3 de 8</div>
+      <div class="qtext">Mistura-se 200 mL de NaCl 5 g/L com 300 mL de KCl 10 g/L. Qual a concentração do KCl na mistura final?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(this,false)">A) 7,5 g/L</button>
+        <button class="opt" onclick="ans(this,false)">B) 5,0 g/L</button>
+        <button class="opt" onclick="ans(this,true)">C) 6,0 g/L</button>
+        <button class="opt" onclick="ans(this,false)">D) 10,0 g/L</button>
+      </div>
+      <div class="qfeedback">Solutos DIFERENTES: calcule cada um separado. m(KCl) = 10×0,3 = 3 g | V total = 0,5 L → C(KCl) = 3/0,5 = 6 g/L. Não some NaCl com KCl!</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="qblock" data-q="4">
+      <div class="qnum">Questão 4 de 8</div>
+      <div class="qtext">Na titulação, o ponto de equivalência é atingido quando:</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(this,false)">A) O indicador muda de cor</button>
+        <button class="opt" onclick="ans(this,true)">B) Os mols de H⁺ igualam os mols de OH⁻</button>
+        <button class="opt" onclick="ans(this,false)">C) O pH da solução é sempre 7</button>
+        <button class="opt" onclick="ans(this,false)">D) A solução muda de cor permanentemente</button>
+      </div>
+      <div class="qfeedback">Ponto de equivalência = mols H⁺ = mols OH⁻. O pH só é 7 quando ácido e base são ambos fortes. Com ácido fraco ou base fraca, o pH no ponto de equivalência é diferente de 7.</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="qblock" data-q="5">
+      <div class="qnum">Questão 5 de 8</div>
+      <div class="qtext">25 mL de NaOH 0,2 mol/L são usados para titular completamente uma amostra de HCl. Quantos mols de HCl havia na amostra?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(this,false)">A) 0,2 mol</button>
+        <button class="opt" onclick="ans(this,false)">B) 0,02 mol</button>
+        <button class="opt" onclick="ans(this,true)">C) 0,005 mol</button>
+        <button class="opt" onclick="ans(this,false)">D) 0,05 mol</button>
+      </div>
+      <div class="qfeedback">n(NaOH) = M×V = 0,2 × 0,025 = 0,005 mol. Como HCl + NaOH reagam 1:1 (n=1 dos dois), n(HCl) = n(NaOH) = 0,005 mol.</div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="qblock" data-q="6">
+      <div class="qnum">Questão 6 de 8</div>
+      <div class="qtext">Qual o volume de NaOH 0,1 mol/L necessário para titular 20 mL de H₂SO₄ 0,05 mol/L?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(this,false)">A) 10 mL</button>
+        <button class="opt" onclick="ans(this,true)">B) 20 mL</button>
+        <button class="opt" onclick="ans(this,false)">C) 40 mL</button>
+        <button class="opt" onclick="ans(this,false)">D) 5 mL</button>
+      </div>
+      <div class="qfeedback">Mₐ·Vₐ·nₐ = M_b·V_b·n_b → 0,05×20×2 = 0,1×V_b×1 → 2 = 0,1×V_b → V_b = 20 mL. H₂SO₄ tem n=2, não esqueça!</div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="qblock" data-q="7">
+      <div class="qnum">Questão 7 de 8</div>
+      <div class="qtext">A fenolftaleína em meio ácido apresenta qual coloração?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(this,true)">A) Incolor</button>
+        <button class="opt" onclick="ans(this,false)">B) Rosa/magenta</button>
+        <button class="opt" onclick="ans(this,false)">C) Amarela</button>
+        <button class="opt" onclick="ans(this,false)">D) Azul</button>
+      </div>
+      <div class="qfeedback">Fenolftaleína: incolor em meio ácido/neutro, rosa/magenta em meio básico. É o indicador mais cobrado em titulações ácido-base no EM.</div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="qblock" data-q="8">
+      <div class="qnum">Questão 8 de 8</div>
+      <div class="qtext">Mistura-se 500 mL de HCl 0,4 mol/L com 500 mL de NaCl 0,2 mol/L. Qual a concentração do HCl na mistura?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(this,false)">A) 0,4 mol/L</button>
+        <button class="opt" onclick="ans(this,true)">B) 0,2 mol/L</button>
+        <button class="opt" onclick="ans(this,false)">C) 0,3 mol/L</button>
+        <button class="opt" onclick="ans(this,false)">D) 0,6 mol/L</button>
+      </div>
+      <div class="qfeedback">Solutos diferentes (HCl ≠ NaCl). n(HCl) = 0,4×0,5 = 0,2 mol. V total = 1 L. C(HCl) = 0,2/1 = 0,2 mol/L. O NaCl não interfere no cálculo do HCl.</div>
+    </div>
+
+    <!-- Resultado -->
+    <div class="qblock" data-q="result" style="text-align:center; padding:28px 20px;">
+      <div style="font-size:2.4rem;margin-bottom:10px;">🎉</div>
+      <div class="quiz-head" style="margin-bottom:4px;">Resultado</div>
+      <div class="score-n" id="sn"></div>
+      <div id="sm" style="color:var(--muted);font-size:0.88rem;margin-top:6px;"></div>
+      <button class="btn" onclick="restart()" style="margin-top:18px;">🔁 Refazer</button>
+    </div>
+
+    <div class="quiz-nav">
+      <button class="btn sec" id="bp" onclick="prev()" disabled>← Anterior</button>
+      <span style="font-size:0.78rem;color:var(--muted);" id="qc">1 / 8</span>
+      <button class="btn" id="bn" onclick="nxt()" disabled>Próxima →</button>
+    </div>
+  </div>
+</div></div></div>
+
+<div class="footer">Feito com <span>♥</span> — vai arrasar na prova! ⚗️</div>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const p = Math.round(window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100);
+    document.getElementById('pf').style.width = p + '%';
+    document.getElementById('pp').textContent = p + '%';
+    document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400);
+  });
+
+  function tog(id) { document.getElementById(id).classList.toggle('open'); }
+
+  function chk(el) {
+    el.classList.toggle('chk');
+    el.querySelector('.cb').textContent = el.classList.contains('chk') ? '✓' : '';
+  }
+
+  let cur = 1, score = 0, amap = {};
+  const TOTAL = 8;
+
+  function ans(btn, ok) {
+    const q = btn.closest('.qblock');
+    const n = parseInt(q.dataset.q);
+    if (amap[n]) return;
+    amap[n] = true;
+    q.querySelectorAll('.opt').forEach(o => o.disabled = true);
+    const fb = q.querySelector('.qfeedback');
+    fb.classList.add('show');
+    if (ok) {
+      btn.classList.add('correct'); fb.classList.add('ok');
+      fb.textContent = '✅ Correto! ' + fb.textContent; score++;
+    } else {
+      btn.classList.add('wrong'); fb.classList.add('nok');
+      fb.textContent = '❌ ' + fb.textContent;
+      q.querySelectorAll('.opt').forEach(o => { if (o.getAttribute('onclick').includes('true')) o.classList.add('correct'); });
+    }
+    document.getElementById('bn').disabled = false;
+  }
+
+  function goQ(n) {
+    document.querySelectorAll('.qblock').forEach(q => q.classList.remove('active'));
+    cur = n;
+    if (n > TOTAL) { showRes(); return; }
+    document.querySelector(`.qblock[data-q="${n}"]`).classList.add('active');
+    document.getElementById('qc').textContent = n + ' / ' + TOTAL;
+    document.getElementById('bp').disabled = n === 1;
+    document.getElementById('bn').disabled = !amap[n];
+    document.getElementById('bn').textContent = n === TOTAL ? 'Ver Resultado →' : 'Próxima →';
+  }
+
+  function nxt() { goQ(cur < TOTAL ? cur + 1 : TOTAL + 1); }
+  function prev() { if (cur > 1) goQ(cur - 1); }
+
+  function showRes() {
+    document.querySelectorAll('.qblock').forEach(q => q.classList.remove('active'));
+    document.querySelector('.qblock[data-q="result"]').classList.add('active');
+    document.getElementById('sn').textContent = score + ' / ' + TOTAL;
+    const msgs = [[0,4,'Revise os tópicos com calma — você consegue! 💪'],[5,6,'Bom caminho! Mais um pouco e você domina. 📚'],[7,7,'Muito bem! Quase perfeito. 🔥'],[8,8,'100%! Mandou bem demais! 🏆']];
+    document.getElementById('sm').textContent = msgs.find(([a,b]) => score >= a && score <= b)?.[2] || '';
+    document.getElementById('bn').disabled = true;
+    document.getElementById('bp').disabled = true;
+    document.getElementById('qc').textContent = '✓ Fim';
+  }
+
+  function restart() {
+    score = 0; amap = {};
+    document.querySelectorAll('.opt').forEach(o => { o.disabled = false; o.classList.remove('correct','wrong'); });
+    document.querySelectorAll('.qfeedback').forEach(f => {
+      f.classList.remove('show','ok','nok');
+      f.textContent = f.textContent.replace(/^(✅ Correto! |❌ )/, '');
+    });
+    goQ(1);
+  }
+</script>
+</body>
+</html>
